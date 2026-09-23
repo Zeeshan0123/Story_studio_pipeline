@@ -1,0 +1,21 @@
+{
+  "styleBlock": "Style: warm cinematic realism, soft natural lighting, gentle color grade, modest and family-friendly wardrobe, vertical 9:16 framing, shallow depth of field.",
+  "characters": [
+    {
+      "name": "Yousef",
+      "description": "Yousef: PLACEHOLDER — e.g. a man in his early 30s, short dark beard, wearing a simple grey thobe or casual modest clothing."
+    },
+    {
+      "name": "Maryam",
+      "description": "Maryam: PLACEHOLDER — e.g. a woman in her late 20s, wearing a modest hijab and abaya in muted tones."
+    },
+    {
+      "name": "Adam",
+      "description": "Adam: PLACEHOLDER — e.g. a cheerful young boy around 7 years old, wearing a simple t-shirt and shorts."
+    },
+    {
+      "name": "Dada Jan",
+      "description": "Dada Jan: PLACEHOLDER — e.g. an elderly grandfather figure, white beard, wearing a traditional kurta and prayer cap."
+    }
+  ]
+}
