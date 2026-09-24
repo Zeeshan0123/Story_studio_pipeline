@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { buildSystemPrompt, buildUserPrompt, computeSceneCount, computeMaxWords } from "@/lib/prompt-builder";
-import { buildUploadPackageSystemPrompt, buildUploadPackageUserPrompt } from "@/lib/upload-package-prompt";
+import {
+  buildUploadPackageSystemPrompt,
+  buildUploadPackageUserPrompt,
+  normalizeHashtag,
+} from "@/lib/upload-package-prompt";
 import { generateJsonWithRetry, InvalidLlmJsonError } from "@/lib/json-retry";
 import { GroqConfigError, GroqRequestError } from "@/lib/groq";
 import { getCharacterBible, injectCharacterBible, CONTINUITY_LINE } from "@/lib/character-bible";
@@ -133,7 +137,15 @@ async function tryGenerateUploadPackage(
     const userPrompt = buildUploadPackageUserPrompt(idea, script, durationSec);
     const result = await generateJsonWithRetry(systemPrompt, userPrompt, model, 300);
     const check = UploadPackageSchema.safeParse(result);
-    return check.success ? check.data : null;
+    if (!check.success) return null;
+
+    const seen = new Set<string>();
+    const tags = check.data.tags
+      .map(normalizeHashtag)
+      .filter((t): t is string => t !== null)
+      .filter((t) => (seen.has(t) ? false : (seen.add(t), true)));
+
+    return { ...check.data, tags };
   } catch {
     return null;
   }

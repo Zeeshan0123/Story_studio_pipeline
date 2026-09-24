@@ -42,5 +42,5 @@ export default async function CharactersPage({
   }
 
   const bible = await getCharacterBible(activeId);
-  return <CharacterBibleEditor initial={bible} channelId={activeId} channelName={channel.name} />;
+  return <CharacterBibleEditor key={activeId} initial={bible} channelId={activeId} channelName={channel.name} />;
 }

@@ -30,6 +30,9 @@ export function SiteNav({ channels }: { channels: Channel[] }) {
     const params = new URLSearchParams(searchParams.toString());
     params.set("channel", value);
     router.push(`${pathname}?${params.toString()}`);
+    // Belt-and-suspenders: force the target page's Server Component to
+    // re-fetch rather than risk a cached render for the old channel.
+    router.refresh();
   }
 
   return (

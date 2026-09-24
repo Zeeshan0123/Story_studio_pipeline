@@ -40,5 +40,5 @@ export default async function IdeasPage({
     );
   }
 
-  return <IdeaGenerator initial={channel} />;
+  return <IdeaGenerator key={channel.id} initial={channel} />;
 }

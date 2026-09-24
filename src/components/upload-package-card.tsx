@@ -4,7 +4,7 @@ import { CopyButton } from "@/components/copy-button";
 import type { UploadPackage } from "@/types/pipeline";
 
 export function UploadPackageCard({ pkg }: { pkg: UploadPackage }) {
-  const tagsJoined = pkg.tags.join(", ");
+  const tagsJoined = pkg.tags.join(" ");
 
   return (
     <Card>
