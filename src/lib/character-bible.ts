@@ -117,9 +117,20 @@ export async function updateStyleBlock(channelId: string, styleBlock: string): P
   await updateChannel(channelId, { styleBlock });
 }
 
-export function injectCharacterBible(videoPrompt: string, bible: CharacterBible): string {
-  const matched = bible.characters.filter((c) =>
-    new RegExp(`\\b${escapeRegExp(c.name)}\\b`).test(videoPrompt),
+export function injectCharacterBible(
+  videoPrompt: string,
+  bible: CharacterBible,
+  speakerNames: string[] = [],
+): string {
+  // dialogue.speaker is schema-constrained to a known character name, so the
+  // model can't dodge it the way it sometimes dodges naming someone in the
+  // freeform video_prompt text (e.g. writing "a gloved hand" instead of
+  // naming an abstractly-named character like "The Instruments"). Treat
+  // whoever's speaking in this scene as present, even if the prompt never
+  // says their name.
+  const speakerSet = new Set(speakerNames);
+  const matched = bible.characters.filter(
+    (c) => speakerSet.has(c.name) || new RegExp(`\\b${escapeRegExp(c.name)}\\b`).test(videoPrompt),
   );
   if (matched.length === 0) {
     return videoPrompt;

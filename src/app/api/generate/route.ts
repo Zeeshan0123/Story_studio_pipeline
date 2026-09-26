@@ -92,7 +92,8 @@ export async function POST(request: Request) {
   const raw = shapeCheck.data;
 
   const scenes: Scene[] = raw.scenes.map((s, i) => {
-    let finalVideoPrompt = injectCharacterBible(s.video_prompt, bible);
+    const speakerNames = s.dialogue.map((turn) => turn.speaker);
+    let finalVideoPrompt = injectCharacterBible(s.video_prompt, bible, speakerNames);
     if (i > 0) {
       finalVideoPrompt += "\n" + CONTINUITY_LINE;
     }

@@ -114,9 +114,14 @@ named character(s) are present and what they're doing/how they're reacting \
 while speaking, camera angle, time of day, and a simple motion cue (e.g. \
 subtle camera push, one small gesture). Refer to characters BY NAME ONLY \
 (e.g. "Yousef leans forward at the kitchen table"). Do NOT describe their \
-physical appearance — that is handled separately. If a scene has no named \
-character on screen, describe the setting/action generically without \
-inventing a name.
+physical appearance — that is handled separately. If ANY part of a named \
+character is visible or implied — a hand, feet, a silhouette, a POV shot \
+from their perspective, even just their voice — name them explicitly \
+(e.g. "Yousef's gloved hand reaches into frame", not "a gloved hand \
+reaches into frame"), so their reference image gets matched correctly. \
+Only skip naming anyone when the scene truly involves none of the \
+available characters at all (e.g. a pure product/object close-up with \
+nobody present).
 
 OUTPUT FORMAT:
 Return STRICT JSON ONLY. No markdown, no code fences, no commentary, no \
